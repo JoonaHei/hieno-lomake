@@ -1,3 +1,72 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vastaus</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
 
-Kirjoitit nimeksesi: {{nimi}}
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 
+        #kello {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: black;
+            color: white;
+            padding: 10px 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function päivitäKello() {
+            let nyt = new Date();
+            let tunnit = nyt.getHours().toString().padStart(2, '0');
+            let minuutit = nyt.getMinutes().toString().padStart(2, '0');
+            let sekunnit = nyt.getSeconds().toString().padStart(2, '0');
+            document.getElementById('kello').innerText = `${tunnit}:${minuutit}:${sekunnit}`;
+        }
+        setInterval(päivitäKello, 1000);
+        window.onload = päivitäKello;
+    </script>
+</head>
+<body>
+    <div id="kello"></div>
+
+    <div class="container">
+        <h1>{{ tervehdys }}, {{ nimi }}!</h1>
+        <a href="/">Takaisin lomakkeeseen</a>
+    </div>
+</body>
+</html>
