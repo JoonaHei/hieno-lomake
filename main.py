@@ -22,7 +22,7 @@ def tarkista_voitto(lauta):
         return "Tasapeli"
     return None
 
-@app.route("/")
+@app.route("/",  methods=["GET", "HEAD"])
 def index():
     if 'lauta' not in session:
         alusta_peli()
