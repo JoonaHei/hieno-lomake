@@ -135,6 +135,20 @@
         window.onload = päivitäKello;
     </script>
 </head>
+
+<script>
+    window.onload = function () {
+        if (window.location.hash === "#lauta") {
+            const kohta = document.getElementById("lauta");
+            if (kohta) {
+                setTimeout(() => {
+                    kohta.scrollIntoView({ behavior: "smooth" });
+                }, 50);  // pieni viive varmistaa toiminnan
+            }
+        }
+    };
+</script>
+
 <body>
     <div id="kello"></div>
 
@@ -144,7 +158,7 @@
         X-voitot: {{ x_voitot }} | O-voitot: {{ o_voitot }}
     </div>
 
-    <div class="lauta">
+    <div id="lauta" class="lauta">
         {% for i in range(9) %}
             <form method="POST" action="/siirto/{{ i }}">
                 <button class="ruutu" {% if lauta[i] %}disabled{% endif %}>{{ lauta[i] }}</button>

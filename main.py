@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, redirect, url_for, session
 
 app = Flask(__name__)
 app.secret_key = 'salainen_avain_ristinolla'
@@ -48,18 +48,18 @@ def siirto(ruutu):
             session['o_voitot'] += 1
         if not voittaja:
             session['vuoro'] = "O" if session['vuoro'] == "X" else "X"
-    return redirect(url_for("index"))
+    return redirect(url_for("index")+"#lauta")
 
 @app.route("/nollaa")
 def nollaa():
     alusta_peli()
-    return redirect(url_for("index"))
+    return redirect(url_for("index")+"#lauta")
 
 @app.route("/resetoi")
 def resetoi_voitot():
     session['x_voitot'] = 0
     session['o_voitot'] = 0
-    return redirect(url_for("index"))
+    return redirect(url_for("index")+ "#lauta")
 
 if __name__ == "__main__":
     app.run(debug=True)
